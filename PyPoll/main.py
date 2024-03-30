@@ -1,7 +1,7 @@
 #The total number of votes cast - done
 # A complete list of candidates who received votes - done*
-# The percentage of votes each candidate won 
-# The total number of votes each candidate won
+# The percentage of votes each candidate won -done
+# The total number of votes each candidate won - done
 # The winner of the election based on popular vote
 
 
@@ -44,6 +44,15 @@ with open(election_file_path) as election_file:
 
             candidateVotes[candidateId] += 1
 
+#find the winner
+winningcandidate = ""
+winningcandidatevotes = 0
+
+for candidate in candidates:
+    currentVotes = candidateVotes[candidates.index(candidate)]
+    if currentVotes > winningcandidatevotes:
+        winningcandidate = candidate
+        winningcandidatevotes = currentVotes
 
 
 # print the results to screen
@@ -55,15 +64,34 @@ print('-------------------------')
 
 for candidate in candidates:
     currentCandidateVotes = candidateVotes[candidates.index(candidate)]
-    currentVotePct = (currentCandidateVotes / totalVotes) * 
-    
+    currentVotePct = (currentCandidateVotes / totalVotes) * 100
+    currentVotePct = round(currentVotePct, 3)
     print(f"{candidate}: {currentVotePct}% ({currentCandidateVotes})")
+print('-------------------------')
+print(f"Winner: {winningcandidate}")
 
-print(candidateVotes)
+
+# Print results to file
+outFilePath = "PyPoll\election_results.txt"
+
+with open(outFilePath, 'w') as fileOut:
+    fileOut.write("Election Results\n")
+    fileOut.write('-------------------------\n')
+    fileOut.write(f"Total Votes: {totalVotes}\n")
+    fileOut.write('-------------------------\n')
+
+    for candidate in candidates:
+        currentCandidateVotes = candidateVotes[candidates.index(candidate)]
+        currentVotePct = (currentCandidateVotes / totalVotes) * 100
+        currentVotePct = round(currentVotePct, 3)
+        fileOut.write(f"{candidate}: {currentVotePct}% ({currentCandidateVotes})\n")
+    fileOut.write('-------------------------\n')
+    fileOut.write(f"Winner: {winningcandidate}\n")
 
 ##### End Here
 
 # Your analysis should align with the following results:
+
 # Election Results
 # -------------------------
 # Total Votes: 369711
