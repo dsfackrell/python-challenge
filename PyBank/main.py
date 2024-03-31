@@ -4,14 +4,14 @@
 
 # The net total amount of "Profit/Losses" over the entire period - Done
 
-# The changes in "Profit/Losses" over the entire period, and then the average of those changes 
+# The changes in "Profit/Losses" over the entire period, and then the average of those changes - Done
 
 # The greatest increase in profits (date and amount) over the entire period
 
 # The greatest decrease in profits (date and amount) over the entire period
 
 import csv
-election_file_path = "PyBank\Resources\budget_data.csv"
+election_file_path = "PyBank/Resources/budget_data.csv"
 
 totalNumMonths = 0
 netTotal = 0
@@ -19,6 +19,7 @@ totalChanges = 0
 numChanges = 0
 
 previousChange = 0
+averageChange = 0
 
 # open file
 with open(election_file_path) as election_file:
@@ -31,19 +32,32 @@ with open(election_file_path) as election_file:
 
         # Date,Profit/Losses
         date = row[0]
-        profitLosses = row[1]
+        profitLosses = int(row[1])
+
+        currentChange = 0
 
         # Get the net total amount
         netTotal += profitLosses
 
-        
+        # The changes in profit and losses and average of those changes
+        # get the first the data for the first row
+        if totalNumMonths == 1:
+            previousChange = profitLosses
+        else:
+            currentChange = profitLosses - previousChange
+            totalChanges += currentChange
+            numChanges += 1
+            previousChange = profitLosses
 
+averageChange = totalChanges / numChanges
+averageChange = round(averageChange, 2)
 
+print("Financial Analysis")
+print("----------------------------")
+print(f"Total Months: {totalNumMonths}")
+print(f"Total: ${netTotal}")
+print(f"Average Change: ${averageChange}")
 
-
-
-
-        
 
 
 
