@@ -1,15 +1,3 @@
-# Your task is to create a Python script that analyzes the records to calculate each of the following values:
-
-# The total number of months included in the dataset - Done
-
-# The net total amount of "Profit/Losses" over the entire period - Done
-
-# The changes in "Profit/Losses" over the entire period, and then the average of those changes - Done
-
-# The greatest increase in profits (date and amount) over the entire period
-
-# The greatest decrease in profits (date and amount) over the entire period
-
 import csv
 election_file_path = "PyBank/Resources/budget_data.csv"
 
