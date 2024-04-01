@@ -87,13 +87,3 @@ with open(outFilePath, 'w') as fileOut:
     fileOut.write(f"Average Change: ${averageChange}\n")
     fileOut.write(f"Greatest Increase in Profits: {greatestIncDate} (${greatestIncrease})\n")
     fileOut.write(f"Greatest Decrease in Profits: {greatestDecDate} (${greatestDecrease})")
-
-# Your analysis should align with the following results:
-
-# Financial Analysis
-# ----------------------------
-# Total Months: 86
-# Total: $22564198
-# Average Change: $-8311.11
-# Greatest Increase in Profits: Aug-16 ($1862002)
-# Greatest Decrease in Profits: Feb-14 ($-1825558)
