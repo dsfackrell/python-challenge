@@ -21,6 +21,12 @@ numChanges = 0
 previousChange = 0
 averageChange = 0
 
+greatestIncrease = 0
+greatestIncDate = ""
+
+greatestDecrease = 0
+greatestDecDate = ""
+
 # open file
 with open(election_file_path) as election_file:
     csv_file = csv.reader(election_file)
@@ -49,6 +55,14 @@ with open(election_file_path) as election_file:
             numChanges += 1
             previousChange = profitLosses
 
+        # Get the greatest increase and decrease
+        if(profitLosses > greatestIncrease):
+            greatestIncrease = profitLosses
+            greatestIncDate = date
+        if(profitLosses < greatestDecrease):
+            greatestDecrease = profitLosses
+            greatestDecDate = date
+
 averageChange = totalChanges / numChanges
 averageChange = round(averageChange, 2)
 
@@ -57,10 +71,22 @@ print("----------------------------")
 print(f"Total Months: {totalNumMonths}")
 print(f"Total: ${netTotal}")
 print(f"Average Change: ${averageChange}")
+print(f"Greatest Increase in Profits: {greatestIncDate} (${greatestIncrease})")
+print(f"Greatest Decrease in Profits: {greatestDecDate} (${greatestDecrease})")
 
 
 
 
+outFilePath = "PyBank\Analysis\Financial_Analysis.txt"
+
+with open(outFilePath, 'w') as fileOut:
+    fileOut.write("Financial Analysis\n")
+    fileOut.write('-------------------------\n')
+    fileOut.write(f"Total Months: {totalNumMonths}\n")
+    fileOut.write(f"Total: ${netTotal}\n")
+    fileOut.write(f"Average Change: ${averageChange}\n")
+    fileOut.write(f"Greatest Increase in Profits: {greatestIncDate} (${greatestIncrease})\n")
+    fileOut.write(f"Greatest Decrease in Profits: {greatestDecDate} (${greatestDecrease})")
 
 # Your analysis should align with the following results:
 

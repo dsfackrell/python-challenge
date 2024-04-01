@@ -59,6 +59,7 @@ for candidate in candidates:
     print(f"{candidate}: {currentVotePct}% ({currentCandidateVotes})")
 print('-------------------------')
 print(f"Winner: {winningCandidate}")
+print('-------------------------')
 
 
 # Print results to file
